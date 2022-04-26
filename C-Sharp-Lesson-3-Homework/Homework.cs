@@ -114,6 +114,55 @@ namespace C_Sharp_Lesson_3_Homework
                 Console.Write(' ');
             }
         }
+
+        public void CollectionOperations()
+        {
+            var listOfEmployees = new List<Employee>
+            {
+                new Employee("Ecaterina", "Onofriciuc"),
+                new Employee("Ivan", "Popov"),
+                new Employee("Igor", "Smirnov"),
+                new Employee("Vasea", "Pupkin"),
+                new Employee("Andrei", "Popescu")
+            };
+
+            listOfEmployees.Add(new Employee("Serghei", "Visotskii"));
+            listOfEmployees.Add(new Employee("Serghei", "Prigov"));
+            listOfEmployees.Add(new Employee("Serghei", "Mislinskii"));
+            Console.WriteLine("\n\nList");
+            foreach (var employee in listOfEmployees)
+            {
+                Console.WriteLine($"{employee.LastName} {employee.FirstName}");
+            }
+
+            Console.WriteLine("\n\nOrdered:");
+            foreach (var employee in listOfEmployees.OrderBy(x => x.LastName).ThenByDescending(c => c.FirstName))
+            {
+                Console.WriteLine($"{employee.LastName} {employee.FirstName}");
+            }
+            Console.WriteLine($"\n\nCount: {listOfEmployees.Count}");
+            listOfEmployees.Remove(listOfEmployees[0]);
+            listOfEmployees.Remove(listOfEmployees.First());
+            Console.WriteLine($"\n\nCount after remove: {listOfEmployees.Count}");
+
+            listOfEmployees = listOfEmployees.Where(x => x.FirstName.Length <= 5 || x.FirstName == "Serghei").ToList();
+
+            Console.WriteLine("\n\nAfter filter:");
+
+            foreach (var employee in listOfEmployees)
+            {
+                Console.WriteLine($"{employee.LastName} {employee.FirstName}");
+            }
+
+            Console.WriteLine($"\n\nCount after filter: {listOfEmployees.Count}");
+
+            listOfEmployees = listOfEmployees.DistinctBy(x => x.FirstName).ToList();
+            Console.WriteLine("\n\nOrdered with distinct first name:");
+            foreach (var employee in listOfEmployees.OrderByDescending(x => x.LastName))
+            {
+                Console.WriteLine($"{employee.LastName} {employee.FirstName}");
+            }
+        }
         public static void Main(String[] args)
         {
             Homework homework = new Homework();
@@ -133,6 +182,8 @@ namespace C_Sharp_Lesson_3_Homework
             homework.GetSummOfDiagonalsElements(matrix2);
             homework.StarPrinter(5);
             homework.SortList(list);
+
+            homework.CollectionOperations();
         }
 
     }
