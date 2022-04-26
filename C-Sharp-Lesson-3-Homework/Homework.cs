@@ -6,6 +6,7 @@ namespace C_Sharp_Lesson_3_Homework
     {
         public void GetCentralElementFromMatrix(int[,] matrixOfIntegers)
         {
+            //int[,] matrix = new int[3,4];
             /*print to console the central element from matrixOfIntegers, if not exist print: "This matrix doesn't have a central element"
              * |   input           | result             |
              * |-------------------|--------------------|
@@ -23,7 +24,16 @@ namespace C_Sharp_Lesson_3_Homework
              * ------------------------------------------
              *    
              */
-            //your code here
+            if (matrixOfIntegers.GetLength(0) % 2 == 0 || matrixOfIntegers.GetLength(1) % 2 == 0)
+            {
+                Console.WriteLine("This matrix doesn't have a central element");
+            }
+            else
+            {
+                var rowNumber = matrixOfIntegers.GetLength(0) / 2;
+                var columnNumber = matrixOfIntegers.GetLength(1) / 2;
+                Console.WriteLine($"The central element is {matrixOfIntegers[rowNumber, columnNumber]}");
+            }
 
 
         }
@@ -46,10 +56,29 @@ namespace C_Sharp_Lesson_3_Homework
              * ------------------------------------------
              *    
              */
-            //your code here
+            if (matrixOfIntegers.GetLength(0) != matrixOfIntegers.GetLength(1))
+            {
+                Console.WriteLine("This matrix doesn't have diagonals");
+            }
+            else
+            {
+                var length = matrixOfIntegers.GetLength(0);
+                var firstSum = 0;
+                for (var i = 0; i < length; i++)
+                {
+                    firstSum += matrixOfIntegers[i, i];
+                }
+                var secondSum = 0;
+                for (var i = 0; i < length; i++)
+                {
+                    secondSum += matrixOfIntegers[i, length - i - 1];
+                }
+                Console.WriteLine($"First Diagonal: {firstSum}");
+                Console.WriteLine($"Second Diagonal: {secondSum}");
+            }
 
         }
-        public void StarPrinter(int triangleHight)
+        public void StarPrinter(int triangleHeight)
         {
             /* Write a programm that will print a triagle of stars  with hight = triangleHight
              *  Example: triangleHight = 3;
@@ -57,12 +86,33 @@ namespace C_Sharp_Lesson_3_Homework
              *           * *
              *          * * * 
              */
-            //your code here
+            for (int i = 0; i < triangleHeight; i++)
+            {
+                for (int j = 0; j <= triangleHeight - i; j++)
+                {
+                    Console.Write(' ');
+                }
+
+                for (int j = 0; j <= i; j++)
+                {
+                    Console.Write('*');
+                    if (j != i)
+                    {
+                        Console.Write(' ');
+                    }
+                }
+
+                Console.WriteLine();
+            }
         }
         public void SortList(IList<int> listOfNumbers)
         {
             //Print to console elements of  listOfNumbers in ascending order
-            //your code here
+            foreach (var x in listOfNumbers.OrderBy(x => x))
+            {
+                Console.Write(x);
+                Console.Write(' ');
+            }
         }
         public static void Main(String[] args)
         {
