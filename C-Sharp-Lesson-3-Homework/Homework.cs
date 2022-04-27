@@ -140,6 +140,7 @@ namespace C_Sharp_Lesson_3_Homework
             {
                 Console.WriteLine($"{employee.LastName} {employee.FirstName}");
             }
+
             Console.WriteLine($"\n\nCount: {listOfEmployees.Count}");
             listOfEmployees.Remove(listOfEmployees[0]);
             listOfEmployees.Remove(listOfEmployees.First());
@@ -162,6 +163,10 @@ namespace C_Sharp_Lesson_3_Homework
             {
                 Console.WriteLine($"{employee.LastName} {employee.FirstName}");
             }
+
+            var arrayOfEmployees = listOfEmployees.ToArray();
+            Console.WriteLine();
+            Console.WriteLine(arrayOfEmployees.Length);
         }
         public static void Main(String[] args)
         {
